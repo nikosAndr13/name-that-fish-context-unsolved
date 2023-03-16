@@ -1,8 +1,10 @@
 import "./styles/game-board.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Images } from "../assets/images";
+import { useState } from "react";
+import { QuizContext } from "../QuizContext";
 
-const initialFishes = [
+export const initialFishes = [
   {
     name: "trout",
     url: Images.trout,
@@ -23,17 +25,34 @@ const initialFishes = [
 
 // ! Do not add props to gameboard
 export const GameBoard = () => {
-  const nextFishToName = initialFishes[0];
+  const [answer, setAnswer] = useState("");
+  const { index, checkAnswer, updateCount } = useContext(QuizContext);
+  const nextFishToName = initialFishes[index];
 
   return (
     <div id="game-board">
       <div id="fish-container">
         <img src={nextFishToName.url} alt={nextFishToName.name} />
       </div>
-      <form id="fish-guess-form" onSubmit={() => {}}>
+      <form
+        id="fish-guess-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          checkAnswer();
+          updateCount(answer);
+          setAnswer("");
+        }}
+      >
         <label htmlFor="fish-guess">What kind of fish is this?</label>
-        <input type="text" name="fish-guess" />
-        <input type="submit" />
+        <input
+          type="text"
+          name="fish-guess"
+          value={answer}
+          onChange={(e) => {
+            setAnswer(e.target.value);
+          }}
+        />
+        <input type="submit" value={"Submit"} />
       </form>
     </div>
   );
