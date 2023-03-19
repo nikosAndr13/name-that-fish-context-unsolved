@@ -6,22 +6,17 @@ import { FinalScore } from "./Components/FinalScore";
 import { QuizContext } from "./QuizContext";
 import "./Components/styles/final-score.css";
 import { useState } from "react";
-import {
-  correctCount,
-  incorrectCount,
-  answersLeft,
-} from "./Components/ScoreBoard";
 import { initialFishes } from "./Components/GameBoard";
+const answersLeft = ["trout", "salmon", "tuna", "shark"];
 
 function App() {
   const [index, setIndex] = useState(0);
-  const [inCorrect, setInCorrect] = useState(incorrectCount);
-  const [correct, setCorrect] = useState(correctCount);
+  const [inCorrect, setInCorrect] = useState(0);
+  const [correct, setCorrect] = useState(0);
   const filtered = answersLeft.slice(index);
 
-  const checkAnswer = () => setIndex(index + 1);
-
   const updateCount = (answer) => {
+    setIndex(index + 1);
     if (answer === initialFishes[index].name) {
       setCorrect(correct + 1);
     } else {
@@ -34,7 +29,6 @@ function App() {
     inCorrect,
     correct,
     filtered,
-    checkAnswer,
     updateCount,
   };
 

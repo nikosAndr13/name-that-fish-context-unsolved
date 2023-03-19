@@ -5,6 +5,5 @@ export const QuizContext = createContext({
   inCorrect: 0,
   correct: 0,
   filtered: [],
-  checkAnswer: () => {},
   updateCount: () => {},
 });

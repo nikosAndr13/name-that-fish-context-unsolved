@@ -26,7 +26,7 @@ export const initialFishes = [
 // ! Do not add props to gameboard
 export const GameBoard = () => {
   const [answer, setAnswer] = useState("");
-  const { index, checkAnswer, updateCount } = useContext(QuizContext);
+  const { index, updateCount } = useContext(QuizContext);
   const nextFishToName = initialFishes[index];
 
   return (
@@ -38,7 +38,6 @@ export const GameBoard = () => {
         id="fish-guess-form"
         onSubmit={(e) => {
           e.preventDefault();
-          checkAnswer();
           updateCount(answer);
           setAnswer("");
         }}
