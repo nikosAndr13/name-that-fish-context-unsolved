@@ -1,32 +1,12 @@
 import "./styles/game-board.css";
-import React, { useContext } from "react";
-import { Images } from "../assets/images";
+import React from "react";
 import { useState } from "react";
-import { QuizContext } from "../QuizContext";
+import { useQuizContext } from "../QuizProvider";
+import { initialFishes } from "../QuizProvider";
 
-export const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
-
-// ! Do not add props to gameboard
 export const GameBoard = () => {
+  const { index, updateCount } = useQuizContext();
   const [answer, setAnswer] = useState("");
-  const { index, updateCount } = useContext(QuizContext);
   const nextFishToName = initialFishes[index];
 
   return (

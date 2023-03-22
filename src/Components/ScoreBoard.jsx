@@ -1,12 +1,11 @@
 import "./styles/score-board.css";
 import React from "react";
-import { useContext } from "react";
-import { QuizContext } from "../QuizContext";
+import { useQuizContext } from "../QuizProvider";
 //  Where the score is presented
 
 // ! do not add props to scoreboard
 export const ScoreBoard = () => {
-  const { correct, inCorrect, filtered } = useContext(QuizContext);
+  const { correct, inCorrect, filtered } = useQuizContext();
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {inCorrect}</div>

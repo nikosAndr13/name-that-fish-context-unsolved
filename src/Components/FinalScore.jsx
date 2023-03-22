@@ -1,9 +1,8 @@
 import React from "react";
-import { QuizContext } from "../QuizContext";
-import { useContext } from "react";
+import { useQuizContext } from "../QuizProvider";
 // ! Do Not Add Props Here
 export const FinalScore = () => {
-  const { correct, inCorrect } = useContext(QuizContext);
+  const { correct, inCorrect } = useQuizContext();
   return (
     <div id="final-score">
       <h1>Your Final Score Was</h1>
